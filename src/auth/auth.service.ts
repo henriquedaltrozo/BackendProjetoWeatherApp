@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Injectable, forwardRef, Inject } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  forwardRef,
+  Inject,
+} from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -25,7 +31,10 @@ export class AuthService {
 
   async login(user: any) {
     if (!user || !user.email || !user._id) {
-      throw new HttpException("O campo 'email' ou 'id' do usuário está indefinido.", HttpStatus.UNAUTHORIZED);
+      throw new HttpException(
+        "O campo 'email' ou 'id' do usuário está indefinido.",
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
     const payload = { username: user.email, sub: user._id };
@@ -47,7 +56,10 @@ export class AuthService {
       return this.login(user);
     } catch (error) {
       console.error('Erro ao processar login com token:', error);
-      throw new HttpException('Erro ao processar login com token.', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        'Erro ao processar login com token.',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 }

@@ -1,5 +1,10 @@
-
-import { Injectable, Inject, HttpException, HttpStatus, forwardRef } from '@nestjs/common';
+import {
+  Injectable,
+  Inject,
+  HttpException,
+  HttpStatus,
+  forwardRef,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Token } from './token.entity';
@@ -22,7 +27,7 @@ export class TokenService {
       throw new Error("O campo 'username' é obrigatório para salvar o token.");
     }
 
-    console.log("Salvando token:", hash, "para o usuário:", username);
+    console.log('Salvando token:', hash, 'para o usuário:', username);
 
     let objToken = await this.tokenModel.findOne({ username });
     if (objToken) {
@@ -47,7 +52,7 @@ export class TokenService {
   }
 
   async getUserByToken(token: string): Promise<User> {
-    const tokenHash = token.replace("Bearer ", "").trim();
+    const tokenHash = token.replace('Bearer ', '').trim();
     const objToken = await this.tokenModel.findOne({ hash: tokenHash });
     if (objToken) {
       return this.userService.findOne(objToken.username);

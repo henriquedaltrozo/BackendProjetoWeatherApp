@@ -6,8 +6,6 @@ import { UserRegisterDto } from './dto/user.register.dto';
 import * as bcrypt from 'bcrypt';
 import { ResultDto } from 'src/dto/result.dto';
 import { UserUpdateDto } from './dto/user.update.dto';
-//a
-import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class UserService {

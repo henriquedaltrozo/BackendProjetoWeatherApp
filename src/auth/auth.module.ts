@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { UserModule } from 'src/user/user.module';
 import { LocalStrategy } from './local.strategy';
 import { PassportModule } from '@nestjs/passport';
-import { jwtConstants } from './constants';
+import { jwtConstants } from './jwt.constants';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { TokenModule } from 'src/token/token.module';
@@ -15,10 +15,10 @@ import { TokenModule } from 'src/token/token.module';
     forwardRef(() => TokenModule),
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '86400s' }
+      signOptions: { expiresIn: '86400s' },
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [JwtModule, AuthService]
+  exports: [JwtModule, AuthService],
 })
 export class AuthModule {}
