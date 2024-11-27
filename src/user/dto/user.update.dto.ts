@@ -1,6 +1,6 @@
 export interface UserUpdateDto {
-  nome?: string;
+  name?: string;
   email?: string;
-  senha?: string;
-  telefone?: string;
+  password?: string;
+  phone?: string;
 }

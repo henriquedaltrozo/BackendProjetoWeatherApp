@@ -42,17 +42,17 @@ export class UserController {
     return this.authService.login(req.user);
   }
 
-  @Put('update')
-  async update(@Body() data: UserUpdateDto): Promise<ResultDto> {
-    return this.userService.update(data);
-  }
-
   @Post('login-token')
   async loginToken(@Body() data: { token: string }) {
     if (!data || !data.token) {
       throw new HttpException('Token não fornecido.', HttpStatus.BAD_REQUEST);
     }
     return this.authService.loginToken(data.token);
+  }
+
+  @Put('update')
+  async update(@Body() data: UserUpdateDto): Promise<ResultDto> {
+    return this.userService.update(data);
   }
 
   @UseGuards(JwtAuthGuard)

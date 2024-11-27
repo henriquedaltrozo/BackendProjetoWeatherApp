@@ -20,9 +20,9 @@ export class AuthService {
     private tokenService: TokenService,
   ) {}
 
-  async validateUser(email: string, senha: string): Promise<any> {
+  async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userService.findOne(email);
-    if (user && bcrypt.compareSync(senha, user.password)) {
+    if (user && bcrypt.compareSync(password, user.password)) {
       const { password, ...result } = user.toObject();
       return result;
     }

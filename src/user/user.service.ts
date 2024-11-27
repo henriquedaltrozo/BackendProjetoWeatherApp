@@ -20,7 +20,7 @@ export class UserService {
   ): Promise<{ status: boolean; mensagem: string }> {
     const user = new this.userModel({
       ...data,
-      password: bcrypt.hashSync(data.senha, 8),
+      password: bcrypt.hashSync(data.password, 8),
     });
 
     try {
@@ -42,7 +42,7 @@ export class UserService {
     try {
       const updateData = {
         ...data,
-        ...(data.senha ? { password: bcrypt.hashSync(data.senha, 8) } : {}),
+        ...(data.password ? { password: bcrypt.hashSync(data.password, 8) } : {}),
       };
 
       const user = await this.userModel
