@@ -17,7 +17,7 @@ export class UserService {
 
   async register(
     data: UserRegisterDto,
-  ): Promise<{ status: boolean; mensagem: string }> {
+  ): Promise<{ status: boolean; message: string }> {
     const user = new this.userModel({
       ...data,
       password: bcrypt.hashSync(data.password, 8),
@@ -25,11 +25,11 @@ export class UserService {
 
     try {
       await user.save();
-      return { status: true, mensagem: 'Usuário cadastrado com sucesso' };
+      return { status: true, message: 'Usuário cadastrado com sucesso' };
     } catch (error) {
       return {
         status: false,
-        mensagem: 'Houve um erro ao cadastrar o usuário',
+        message: 'Email já cadastrado',
       };
     }
   }
@@ -50,13 +50,13 @@ export class UserService {
         .exec();
 
       if (!user) {
-        return { status: false, mensagem: 'Usuário não encontrado' };
+        return { status: false, message: 'Usuário não encontrado' };
       }
 
-      return { status: true, mensagem: 'Dados atualizados com sucesso' };
+      return { status: true, message: 'Dados atualizados com sucesso' };
     } catch (error) {
       console.error(error);
-      return { status: false, mensagem: 'Erro ao atualizar dados' };
+      return { status: false, message: 'Erro ao atualizar dados' };
     }
   }
 }
